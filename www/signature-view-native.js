@@ -1,6 +1,5 @@
 var SignatureViewNative = {
-    getSignature: function (successCallback, errorCallback) {
-        var rest = Array.prototype.slice.call(arguments, 2);
+    getSignature: function (configuration, successCallback, errorCallback) {
 
         cordova.exec(function (data) {
 
@@ -44,7 +43,7 @@ var SignatureViewNative = {
                 successCallback(imgData);
             }
 
-        }, errorCallback, 'Signature', 'new', rest);
+        }, errorCallback, 'Signature', 'new', configuration);
     }
 };
 

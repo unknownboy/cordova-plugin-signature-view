@@ -18,33 +18,37 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class SignaturePlugin extends CordovaPlugin {
+	public static final String ACTION_NEW = "new"; 
+	public static final String DEFAULT_TITLE_VALUE = "Please sign below"; 
+	public static final String DEFAULT_HTMLFILE_VALUE = null; 
+	public static final String DEFAULT_SAVE_VALUE = "Save"; 
+	public static final String DEFAULT_CLEAR_VALUE = "Clear"; 
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
-
-        if ("new".equals(action)) {
+			
+        if (ACTION_NEW.equals(action)) {
+			JSONObject arg_object = args.getJSONObject(0);
+			
             // TODO: Make default title translatable
-            String title = "Please sign below";
-            String htmlFile = null;
-            String save = "Save";
-            String clear = "Clear";
-
-            if (args.length() >= 4) {
-                htmlFile = args.getString(3);
-            }
-
-            if (args.length() >= 3) {
-                clear = args.getString(2);
-            }
-
-            if (args.length() >= 2) {
-                save = args.getString(1);
-            }
-
-            if (args.length() >= 1) {
-                title = args.getString(0);
-            }
+            String title = DEFAULT_TITLE_VALUE;
+            String htmlFile = DEFAULT_HTMLFILE_VALUE;
+            String save = DEFAULT_SAVE_VALUE;
+            String clear = DEFAULT_CLEAR_VALUE;
+			
+			if (arg_object.has("title")) {
+				title = arg_object.getString("title");
+			}
+			if (arg_object.has("webpage")) {
+				htmlFile = arg_object.getString("webpage");
+			}
+			if (arg_object.has("clear")) {
+				clear = arg_object.getString("clear");
+			}
+			if (arg_object.has("save")) {
+				save = arg_object.getString("save");
+			}
 
             Activity act = this.cordova.getActivity();
             FragmentManager fragmentManager = act.getFragmentManager();

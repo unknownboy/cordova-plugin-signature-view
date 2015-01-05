@@ -2,7 +2,7 @@
     'use strict';
 
     var signature = {
-        getSignature: function (successCallback, errorCallback) {
+        getSignature: function (configuration, successCallback, errorCallback) {
             // Are we on a cordova device (no desktop browser), and is
             // it one of the supported platforms for the native view?
             // XXX: This really requires waiting for deviceReady.
@@ -18,8 +18,9 @@
                 signature.getSignatureFallback.apply(signature, arguments);
             }
         },
-        getSignatureFallback: function (successCallback, errorCallback, title, webpage) {
-            title = title || "Please sign below";
+        getSignatureFallback: function (configuration, successCallback, errorCallback, webpage) {
+            title = configuration.title || "Please sign below";
+			webpage = configuration.webpage || null;
             var popup = document.createElement('div'),
                     cleanUp = function () {
                         okButton.removeEventListener('click', okFun);
@@ -62,10 +63,10 @@
                     '    <h3 style="margin: 0.1em 0; position: absolute; right: 0.5em; top: 0; cursor: pointer;" id="cordova.signature-view:cancel">╳</span>' +
                     '  </div>' +
                     // TODO: Find out an elegant way to automatically determine the size of the webpage, and use the rest for signature.
-                            (webpage ? '<div style="height: 50%; min-height: 50%; width: 100%"><object>' + webpage + '</object></div>' : '') +
-                            '  <div style="position: relative"><canvas style="width: 100%; min-height: ' + (webpage ? '50%' : '100%') + '" id="cordova.signature-view:pad"></canvas></div>' +
-                            '  <div><button style="width: 100%" id="cordova.signature-view:ok">ok</button></div>' +
-                            '</div>';
+					(webpage ? '<div style="height: 50%; min-height: 50%; width: 100%"><object>' + webpage + '</object></div>' : '') +
+					'  <div style="position: relative"><canvas style="width: 100%; min-height: ' + (webpage ? '50%' : '100%') + '" id="cordova.signature-view:pad"></canvas></div>' +
+					'  <div><button style="width: 100%" id="cordova.signature-view:ok">ok</button></div>' +
+					'</div>';
                     document.body.appendChild(popup);
                     document.getElementById('cordova.signature-view:title').appendChild(document.createTextNode(title));
                     okButton = document.getElementById('cordova.signature-view:ok');
