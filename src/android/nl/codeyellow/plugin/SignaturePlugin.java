@@ -23,7 +23,7 @@ public class SignaturePlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
 
-        if (action.equals("new")) {
+        if ("new".equals(action)) {
             // TODO: Make default title translatable
             String title = "Please sign below";
             String htmlFile = null;
@@ -54,7 +54,7 @@ public class SignaturePlugin extends CordovaPlugin {
             return true;
         } else {
             callbackContext.error("Unknown action: " + action);
-
+			// Returning false results in a "MethodNotFound" error.
             return false;
         }
     }

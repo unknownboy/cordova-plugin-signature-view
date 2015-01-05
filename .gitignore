@@ -1,0 +1,17 @@
+# OSX hidden files
+.DS_Store
+# Xcode files
+build/
+*.pbxuser
+*.perspective
+*.perspectivev3
+xcuserdata
+# Android & Intelij files
+.idea/
+bin/
+gen/
+*.iml
+*.iws
+out/
+local.properties
+log/

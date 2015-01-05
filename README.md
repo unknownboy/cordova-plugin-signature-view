@@ -24,9 +24,10 @@ you're not using an AMD loader, it will define a global SignatureView
 variable (a property on "window").  It provides only one method, with
 the following signature (no pun intended):
 
-	:::javascript
+```javascript
 	SignatureView.getSignature(success, error, [title, [htmlPage]]);
-
+```
+	
 The `success` argument is a callback function accepting one argument,
 which is either null (in case the user canceled the dialog) or an
 [ImageData](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/#imagedata)
@@ -58,7 +59,7 @@ Example
 Here's a minimal working example.  It assumes there's a CANVAS element
 in your HTML document which has an id of `signature`.
 
-	:::javascript
+```
 	var Signature = cordova.require('nl.codeyellow.signature.Signature');
 	Signature.getSignature(
 		function (imgData) {
@@ -77,3 +78,4 @@ in your HTML document which has an id of `signature`.
 		},
 		/* This final string is optional and defaults to a similar string. */
 		'Please put your signature down below');
+```
