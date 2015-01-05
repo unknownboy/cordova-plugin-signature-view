@@ -5,6 +5,7 @@
     version="1.0.0">
   <name>Signature view plugin</name>
   <license>Apache 2.0 License</license>
+  <author>Code Yellow B.V.</author>
   <description>
     Native view plugin to request and capture the user's written
     signature. Currently contains a native Android implementation and
