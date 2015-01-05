@@ -16,27 +16,28 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SignaturePlugin extends CordovaPlugin {
-	public static final String ACTION_NEW = "new"; 
-	public static final String DEFAULT_TITLE_VALUE = "Please sign below"; 
-	public static final String DEFAULT_HTMLFILE_VALUE = null; 
-	public static final String DEFAULT_SAVE_VALUE = "Save"; 
-	public static final String DEFAULT_CLEAR_VALUE = "Clear"; 
+	public static final String ACTION_NEW = "new";
+	public static final String DEFAULT_TITLE_VALUE = "Please sign below";
+	public static final String DEFAULT_HTMLFILE_VALUE = null;
+	public static final String DEFAULT_SAVE_VALUE = "Save";
+	public static final String DEFAULT_CLEAR_VALUE = "Clear";
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
-			
+
         if (ACTION_NEW.equals(action)) {
 			JSONObject arg_object = args.getJSONObject(0);
-			
+
             // TODO: Make default title translatable
             String title = DEFAULT_TITLE_VALUE;
             String htmlFile = DEFAULT_HTMLFILE_VALUE;
             String save = DEFAULT_SAVE_VALUE;
             String clear = DEFAULT_CLEAR_VALUE;
-			
+
 			if (arg_object.has("title")) {
 				title = arg_object.getString("title");
 			}
